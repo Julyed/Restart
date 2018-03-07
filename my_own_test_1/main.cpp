@@ -1,10 +1,10 @@
 #include <iostream>
-
+#include <climits>
 using namespace std;
 
 int main()
 {
-    wchar_t bob = L'P';     // a wide-character constant
-    wcout << L"tall" << " " << bob << endl;   //outputting a wide-character string
+    int n_int = INT_MAX;
+    cout << n_int << endl;
     return 0;
 }
