@@ -16,40 +16,37 @@ struct rect
     double y;
 };
 
-polar rec_to_polar(rect rec);
-void show_polar(polar pol);
+void rec_to_polar(const rect *rec, polar *pol);
+void show_polar(const polar *pol);
 
 int main()
 {
-    polar point_p;
-    rect point_r;
+    polar *point_p = new polar;
+    rect *point_r = new rect;
 
-    cout << "Enter the rect point; ";
-    while(cin >> point_r.x >> point_r.y)
+    cout << "Enter the rect point(q to quit): ";
+    while(cin >> point_r->x >> point_r->y)
     {
-        point_p = rec_to_polar(point_r);
+        rec_to_polar(point_r, point_p);
         show_polar(point_p);
-        cout << "Enter the next rect point; ";
+        cout << "Enter the next rect point(q to quit): ";
     }
     cout << "Done!" << endl;
 
     return 0;
 }
 
-polar rec_to_polar(rect p)
+void rec_to_polar(const rect *p, polar *ans)
 {
-    polar ans;
-
-    ans.distance = sqrt(p.x * p.x + p.y * p.y);
-    ans.angle = atan2(p.y, p.x);
-    return ans;
+    ans->distance = sqrt(p->x * p->x + p->y * p->y);
+    ans->angle = atan2(p->y, p->x);
 }
 
-void show_polar(polar p)
+void show_polar(const polar *p)
 {
     const double rad_to_deg = 57.29577951;
 
-    cout << "The distance of this point is " << p.distance;
-    cout << " and the angle is " << p.angle * rad_to_deg << ".\n";
+    cout << "The distance of this point is " << p->distance;
+    cout << " and the angle is " << p->angle * rad_to_deg << ".\n";
     return;
 }
